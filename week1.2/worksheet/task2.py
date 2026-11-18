@@ -14,7 +14,10 @@ x = len(decimals)
 min = min(decimals)
 max = max(decimals)
 mean = sum(decimals)/x
-median = decimals[ x//2]
+if x % 2 == 1:
+    median = decimals[x//2]
+else:
+    median = (decimals[x//2-1] + decimals[x//2])/2
 
 print(f"Minimum = {min}")
 print(f"Maximum = {max}")
