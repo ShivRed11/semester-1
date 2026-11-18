@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 2: Task 2
 
 # Given an incomplete function odd_even and a docstring.
@@ -18,7 +19,17 @@ def odd_even(lstIntegers):
     """
 
     # Complete your code here
+    odd_count = 0
+    even_count = 0
+    for number in lstIntegers:
+        if number % 2 == 0:      # remainder 0 when divided by 2 -> even
+            even_count += 1
+        else:
+            odd_count += 1
+    return [odd_count, even_count]
 
 
 # Check if correct output is produced
 print(odd_even([1, 2, 3, 4, 5]))  # Output: [3, 2]
+print(odd_even([]))               # Output: [0, 0]
+print(odd_even([2, 4, 6, -1]))    # Output: [1, 3]

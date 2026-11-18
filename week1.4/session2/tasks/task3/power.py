@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 2: Task 4
 
 # Given an incomplete recursive function power to calculate x raised to
@@ -6,9 +7,15 @@
 
 def power(x, n):
     # complete your code here
-    # base case
+    # base case: anything to the power 0 is 1
+    if n == 0:
+        return 1
 
-    # recursive case
+    # recursive case: x^n = x * x^(n-1)
+    return x * power(x, n - 1)
 
 
 # Once completed, make at least two function calls to test the power function
+print(power(2, 10))    # 1024
+print(power(3, 3))     # 27
+print(power(5, 0))     # 1

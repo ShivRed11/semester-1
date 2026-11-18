@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # this program takes a file which contains students IDs and the hours late that work was submitted
 # it needs to convert the minutes late into days, hours and minutes
 # all file handling has been done - the section you need to edit is marked by comments below
@@ -18,9 +19,13 @@ for row in data:
     # for example: if minutes_late is 2000, then days = 1, hours = 9, minutes = 20
     # hint: there are 1440 minutes in a day (24 * 60)
     
-    days = 0
-    hours = 0
-    minutes = 0
+    # // (integer division) gives how many WHOLE days fit into minutes_late
+    days = minutes_late // 1440
+    # % (modulo) gives what is LEFT OVER after the whole days are taken away;
+    # divide that by 60 to get the whole hours
+    hours = (minutes_late % 1440) // 60
+    # whatever is left after taking out whole hours is the minutes
+    minutes = minutes_late % 60
     
     print(f"Student {row[0]}: {days}D {hours}H {minutes}M")
 

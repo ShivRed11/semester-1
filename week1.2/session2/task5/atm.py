@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.2, Session 2: Task 5
 # ATM Simulation
 
@@ -16,17 +17,18 @@ option = int(input("Enter your option (1-3): "))
 
 # Conditional block for ATM operations
 
-if XXX:
+if option == 1:
     print(f"Your current balance is: £{balance:.2f}")
-elif XXX:
+elif option == 2:
     deposit_amount = float(input("Enter the amount to deposit: "))
     balance += deposit_amount
     print(f"You have deposited £{deposit_amount:.2f}")
     print(f"Your new balance is £{balance:.2f}")
-elif XXX:
+elif option == 3:
     withdraw_amount = float(input("Enter the amount to withdraw: "))
     # Nested conditional for withdrawal
-    if XXX:
+    # only allow the withdrawal if there is enough money in the account
+    if withdraw_amount <= balance:
         balance -= withdraw_amount
         print(f"You have withdrawn £{withdraw_amount:.2f}")
         print(f"Your new balance is £{balance:.2f}")

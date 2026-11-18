@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.5, Session 2: Task 4
 
 """
@@ -73,3 +74,13 @@ class Circle:
         return f"radius={self.radius}, centre={self.centre}"
 
     # Implement your __contains__() method here
+    def __contains__(self, point):
+        """
+        Returns True if the given Point lies inside this Circle.
+
+        Used by the 'in' operator:  point in circle
+        (Python calls circle.__contains__(point), so self is the Circle,
+        which is the object on the RIGHT of 'in'.)
+        """
+        # Inside if the point is closer to the centre than the radius
+        return point.distance_to(self.centre) < self.radius

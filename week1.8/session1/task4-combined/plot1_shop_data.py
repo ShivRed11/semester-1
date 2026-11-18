@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 '''
 This is the recommended start point for matplotlib, and should help you to build up skills.
 
@@ -63,5 +64,12 @@ plt.show()
 
 # Create a pie chart to show sales per product
 
+# Same pattern as above: group -> pick the column -> plot.
+# This time we group by "Product" instead of "Category".
+sales_per_product = shop_data.groupby("Product").sum(numeric_only=True)
+sales_per_product = sales_per_product["Total_Price"]
+print(sales_per_product)
 
-
+# autopct adds the percentage to each slice; ylabel="" removes the default label
+sales_per_product.plot(kind="pie", autopct="%1.1f%%", title="Sales per Product", ylabel="")
+plt.show()

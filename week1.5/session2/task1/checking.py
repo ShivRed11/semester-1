@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.5, Session 2: Task 1
 
 # Add type checking to the constructor of Point
@@ -33,6 +34,10 @@ class Point:
         """
         return math.hypot(self.x - p.x, self.y - p.y)
 
+
+# Notes: isinstance(value, (int, float)) is True if value is an int OR a
+# float. Anything else raises TypeError straight away, so the program now
+# fails when the Point is CREATED, not later when distance() is called.
 
 # Test program
 

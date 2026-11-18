@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 1: 
 
 # There are 5 functions defined below, one for each arithmetic operation
@@ -40,16 +41,16 @@ def run_program():
 
     match operation:
         case 1:
-            result = None    # complete this line of code
+            result = addition(num1, num2)
             print(f"The result of addition is: {result}")
         case 2:
-            result = None    # complete this line of code
+            result = subtraction(num1, num2)
             print(f"The result of subtraction is: {result}")
         case 3:
-            result = None   # complete this line of code
+            result = multiplication(num1, num2)
             print(f"The result of multiplication is: {result}")
         case 4:
-            result = None    # complete this line of code
+            result = division(num1, num2)
             print(f"The result of division is: {result}")
         case _:
             print("Undefined operation")
@@ -65,3 +66,10 @@ run_program()
 
 #    If you are to split each task into a separate function, how would you
 #   name the function for each of these tasks?
+
+# Answer - one possible set of names, one function per job:
+#   (1) get_numbers()        -> asks for and returns the two numbers
+#   (2) get_operation()      -> shows the menu and returns the choice (1-4)
+#   (3) calculate(operation, num1, num2) / perform_operation(...)
+#                            -> uses match to call the right function
+#   run_program() would then just call these three in turn.

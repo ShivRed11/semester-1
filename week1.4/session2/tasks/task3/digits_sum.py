@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 2: Task 4
 
 # Given incomplete recursive function digits_sum with a docstring,
@@ -18,9 +19,13 @@ def digits_sum(number):
         int: The sum of the digits of the input integer.
     """
     # complete your code here
-    # base case
+    # base case: a single digit is its own digit sum
+    if number < 10:
+        return number
 
-    # recursive case
+    # recursive case: last digit (number % 10) + sum of the remaining
+    # digits (number // 10 chops off the last digit)
+    return number % 10 + digits_sum(number // 10)
 
 
 # check if correct output is produced
@@ -29,3 +34,16 @@ print(digits_sum(12345))  # Output: 15
 
 
 # Once completed, your next task is to write an equivalent function that uses loops.
+
+
+# Equivalent function using a loop
+def digits_sum_loop(number):
+    total = 0
+    while number > 0:
+        total += number % 10
+        number = number // 10
+    return total
+
+
+print(digits_sum_loop(987))     # Output: 24
+print(digits_sum_loop(12345))   # Output: 15

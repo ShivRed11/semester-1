@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 1: Task 3
 
 # You are given function calculate_grade and a docstring.
@@ -32,13 +33,29 @@ def calculate_grade(marks):
         None: If `marks` is not a valid integer or is outside the allowed
               range (greater than 100 or negative)
     """
-    pass
+    # Validity check first: must be an int in the range 0-100
+    if not isinstance(marks, int) or marks < 0 or marks > 100:
+        return None
+
+    # Check from the top band down, so each elif only needs one comparison
+    if marks >= 80:
+        grade = 'A'
+    elif marks >= 70:
+        grade = 'B'
+    elif marks >= 60:
+        grade = 'C'
+    elif marks >= 50:
+        grade = 'D'
+    else:
+        grade = 'F'
 
     return grade
 
 
 # Check if the following tests produce the correct output
-print(calculate_grade(39))
-print(calculate_grade(55))
-print(calculate_grade(-20))
-print(calculate_grade(100))
+print(calculate_grade(39))     # F
+print(calculate_grade(55))     # D
+print(calculate_grade(-20))    # None
+print(calculate_grade(100))    # A
+print(calculate_grade(101))    # None
+print(calculate_grade("70"))   # None (not an int)

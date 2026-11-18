@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.2, Session 2: Task 4
 
 # A till system needs to offer a range of discounts:
@@ -13,11 +14,14 @@ cost = int(input("Amount spent: "))
 is_member = input("Are you a member? (y/n): ").lower()
 is_student = input("Are you a student? (y/n): ").lower()
 
-if XXX:
+# The most specific case (student AND member) must be checked FIRST.
+# If 'member' were checked first, a student member would only get 25% off
+# because the first True branch wins and the others are skipped.
+if is_member == "y" and is_student == "y":
     final_cost = cost * 0.7
-elif XXX:
+elif is_member == "y":
     final_cost = cost * 0.75
-elif XXX:
+elif is_student == "y":
     final_cost = cost * 0.85
 else:
     final_cost = cost

@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.6, Session 1: Task 5
 
 from datetime import datetime
@@ -42,11 +43,33 @@ class QuakeDataset:
         # each dictionary and convert them into the required types before
         # creating a Quake object and storing it in the list.
 
+        # Start with a fresh, empty list so that old data is discarded
+        self.data = []
+
+        for info in self.feed.reader():
+            # Occasionally a feed row has a missing value; skip those rows
+            if not info["mag"] or not info["depth"]:
+                continue
+
+            # Every value in the dictionary is a string, so convert each
+            # one to the type that Quake expects
+            quake = Quake(
+                datetime.fromisoformat(info["time"]),
+                float(info["longitude"]),
+                float(info["latitude"]),
+                float(info["depth"]),
+                float(info["mag"]),
+            )
+            self.data.append(quake)
+
     def __len__(self):
         """
         Returns the size of this dataset.
         """
         # Write code here that returns the number of quakes downloaded
+
+        # Delegate to the underlying list - this lets us call len(dataset)
+        return len(self.data)
 
     def __str__(self):
         """
@@ -54,6 +77,9 @@ class QuakeDataset:
         """
         # Write code here to create and return a string representation
         # (Include number of quakes and details of the feed that was used)
+
+        # str(self.feed) uses QuakeFeed's __str__(), e.g. "4.5_week.csv"
+        return f"{len(self)} quakes, from {self.feed}"
 
     def mean_depth(self):
         """
@@ -71,6 +97,13 @@ class QuakeDataset:
         """
         # Write code here that computes the mean magnitude of all the
         # quakes currently in the dataset
+
+        # Same approach as mean_depth(), but summing magnitudes
+        if len(self.data) == 0:
+            raise QuakeDatasetError("dataset is empty")
+
+        total = sum(quake.magnitude for quake in self.data)
+        return total / len(self.data)
 
     def shallowest_quake(self):
         """
@@ -91,3 +124,14 @@ class QuakeDataset:
         """
         # Write code here that finds and returns the strongest quake
         # (i.e., the one with the largest magnitude)
+
+        # Same approach as shallowest_quake(), but looking for the largest
+        # magnitude instead of the smallest depth
+        if len(self.data) == 0:
+            raise QuakeDatasetError("dataset is empty")
+
+        strongest = self.data[0]
+        for quake in self.data[1:]:
+            if quake.magnitude > strongest.magnitude:
+                strongest = quake
+        return strongest

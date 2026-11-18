@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 2: 
 
 # Given incomplete recursive function countdown with a docstring.
@@ -16,8 +17,13 @@ def countdown(n):
 
     # Complete your code here
     # base case
+    if n == 0:
+        print(0)
+        return
 
     # recursive case
+    print(n)
+    countdown(n - 1)     # same problem, one step smaller
 
 
 # check if correct output is produced
@@ -27,3 +33,12 @@ countdown(5)     # 5 ... 0  (Note: each number in printed in a separate line)
 
 # Once you have completed, your next task is to write an equivalent function that
 # uses a loop.
+
+
+# Equivalent function using a loop
+def countdown_loop(n):
+    for number in range(n, -1, -1):    # n, n-1, ..., 0
+        print(number)
+
+
+countdown_loop(5)

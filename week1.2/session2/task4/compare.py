@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.2, Session 2: Task 4
 # Simple Number Comparer
 
@@ -8,9 +9,10 @@ num2 = float(input("Enter the second number: "))
 
 # Use an if statement to compare the two numbers
 
-if XXX: 
+if num1 > num2:
     print("The first number is bigger.")
-elif XXX:  
+elif num2 > num1:
     print("The second number is bigger.")
 else:
+    # neither is bigger, so they must be equal
     print("Both numbers are Equal.")

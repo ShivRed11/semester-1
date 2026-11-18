@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 2: Task 2
 
 def most_frequent_string(votes):
@@ -21,6 +22,24 @@ def most_frequent_string(votes):
     # Hint 1: You can complete this task with for loops or comprehensions 
     # Hint 2: Think about the properties of the various collection-types
 
+    if len(votes) == 0:
+        return None, None
+
+    # Key idea: a dictionary maps each string to how many times we've seen it
+    counts = {}
+    for vote in votes:
+        counts[vote] = counts.get(vote, 0) + 1
+
+    # Find the key with the biggest count
+    best = None
+    best_count = 0
+    for vote, count in counts.items():
+        if count > best_count:
+            best = vote
+            best_count = count
+
+    return best, best_count
+
 
 fruit = ['date', 'apple', 'cherry', 'date', 'apple', 'apple', 'elderberry',
          'date', 'elderberry', 'elderberry', 'date', 'banana']
@@ -40,3 +59,22 @@ print(most_frequent_string([]))             # (None, None)
 # If completed, you could update the function to return all items that tie for the
 # highest count in a list, e.g  (['apples', 'bananas'], 9). If there is no
 # tie, return a single string and a value as usual, e.g ('apples, 9).
+
+
+# Extension: return all items that tie for the highest count
+def most_frequent_strings(votes):
+    if len(votes) == 0:
+        return None, None
+    counts = {}
+    for vote in votes:
+        counts[vote] = counts.get(vote, 0) + 1
+    highest = max(counts.values())
+    winners = [vote for vote, count in counts.items() if count == highest]
+    if len(winners) == 1:
+        return winners[0], highest
+    return winners, highest
+
+
+print(most_frequent_strings(fruit))                       # ('date', 4)
+print(most_frequent_strings(['apples', 'bananas', 'apples', 'bananas']))
+# (['apples', 'bananas'], 2)

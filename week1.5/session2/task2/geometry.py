@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.5, Session 2: Task 2
 
 """
@@ -32,6 +33,12 @@ class Point:
         return math.hypot(self.x - p.x, self.y - p.y)
 
     # Implement a __str__() method here
+    def __str__(self):
+        """
+        Returns a string representation of this Point.
+        """
+        # print() calls __str__() automatically to get this text
+        return f"({self.x}, {self.y})"
 
 
 class Circle:
@@ -63,3 +70,9 @@ class Circle:
         return 2.0 * math.pi * self.radius
 
     # Implement a __str__() method here
+    def __str__(self):
+        """
+        Returns a string representation of this Circle.
+        """
+        # {self.centre} uses Point's own __str__() method
+        return f"Circle with radius {self.radius}, centred at {self.centre}"

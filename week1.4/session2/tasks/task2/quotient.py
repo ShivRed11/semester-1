@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 2: Task 2
 
 # Given an incomplete function divide_and_remainder with a docstring.
@@ -18,6 +19,8 @@ def divide_and_remainder(dividend, divisor):
     """
 
     # complete your code here
+    quotient = dividend // divisor     # integer (floor) division
+    remainder = dividend % divisor     # modulus gives the remainder
 
     # Returning both quotient and remainder
     return quotient, remainder

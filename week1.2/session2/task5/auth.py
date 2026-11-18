@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.2, Session 2: Task 5
 # Authentication
 
@@ -15,10 +16,12 @@ password = input("Enter your password: ")
 
 # Conditional block for login authentication
 
-if XXX:
-    if XXX:
+# both username AND password must match
+if username == correct_username and password == correct_password:
+    # two_factor_enabled is already a boolean, so it can be used directly
+    if two_factor_enabled:
         two_factor_code = input("Enter the 2FA code sent to your device: ")
-        if XXX:
+        if two_factor_code == correct_2fa_code:
             print("Login successful! Welcome!")
         else:
             print("Invalid two-factor authentication code. Access denied.")

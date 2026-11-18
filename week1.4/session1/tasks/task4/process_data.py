@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 1
 
 # You are given function process_data with docstring. 
@@ -20,7 +21,9 @@ def process_data(data):
         int: The sum of all integers in the list or None if empty.
     """
     if not data:
-        return 0
+        # This was the incorrect line: it returned 0, but the docstring
+        # says an empty list should give None.
+        return None
     return sum(data)
 
 # What is output from the following line of code?

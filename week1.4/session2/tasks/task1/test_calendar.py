@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 2: Task 1
 
 import calendar
@@ -18,6 +19,11 @@ print(calendar.month(2025, 10))
 # to the month function with different values of w and l and observe the
 # output.
 
+# w = width of each date column (default 2)
+# l = number of lines used for each week (default 1)
+print(calendar.month(2025, 10, w=4))          # wider columns
+print(calendar.month(2025, 10, w=3, l=2))     # wider + double-spaced weeks
+
 
 # While at https://docs.python.org/3/library/calendar.html, explore
 # the calendar function(calendar.calendar, yes the function is called
@@ -28,3 +34,9 @@ print(calendar.month(2025, 10))
 # Your task is to write code to make 3 functions calls to the calendar
 # function with different values to the optional arguments (w, l, c, and m).
 # Display the output to observe the differences.
+
+# w, l as above; c = spaces between month columns (default 6);
+# m = number of months per row (default 3)
+print(calendar.calendar(2025, w=3))           # wider date columns
+print(calendar.calendar(2025, c=2, m=4))      # 4 months per row, close together
+print(calendar.calendar(2025, w=2, l=2, c=10, m=2))  # 2 per row, spaced out

@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.3, Session 1: Task 2c
 
 # open a named text file for reading using open() function
@@ -21,3 +22,8 @@ with open('file_data.txt', 'r') as file:
 # We use 'break' to exit the reading process at the end of the file.
 
 # Why do we use an infinite 'while True' loop for this process?
+# Answer: we don't know in advance how many characters are in the file, so we can't
+# write a simple condition at the top of the loop. Instead we keep reading "forever"
+# and only find out we are finished once we have tried to read: at the end of the file
+# file.read(1) returns an empty string "", which is falsy, so `if not char:` is True
+# and `break` exits the loop.

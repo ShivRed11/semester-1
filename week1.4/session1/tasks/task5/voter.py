@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 4, Session 1: 
 
 # Inspect the code, run the program and observe the output
@@ -19,3 +20,8 @@ age = int(input("Enter your age: "))
 check_vote_eligibility(age)
 
 # what is the return value from check_vote_eligibility?
+
+# Answer: check_vote_eligibility has no return statement, so it returns
+# None. It PRINTS a message, but does not RETURN a value. You can see this:
+result = check_vote_eligibility(age)
+print(f"Return value: {result}")    # Return value: None

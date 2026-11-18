@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.7, Session 2: Task 4 - buggy exam grading program
 
 import sys
@@ -21,7 +22,7 @@ def read_marks(filename):
         infile.readline()  # skip column headings
         for line in infile:
             name, mark = line.strip().split(",")
-            data[name] = mark
+            data[name] = int(mark)  # BUG 2 FIX: mark was stored as a str; convert to int
         return data
 
 
@@ -35,9 +36,11 @@ def grade(mark):
 
     MarkError is raised if the provided mark is not valid.
     """
+    if not isinstance(mark, int):  # BUG 4 FIX: "50" gave TypeError, not MarkError
+        raise MarkError("mark must be an integer")
     if 0 <= mark < 40:
         return "Fail"
-    elif 40 <= mark <= 70:
+    elif 40 <= mark < 70:  # BUG 3 FIX: was <= 70, so 70 wrongly gave "Pass"
         return "Pass"
     elif 70 <= mark <= 100:
         return "Distinction"
@@ -46,7 +49,7 @@ def grade(mark):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 2:  # BUG 1: originally '!= 1' (argv has 2 items: program + filename)
         sys.exit("Usage: python grades.py <csv-filename>")
 
     marks = read_marks(sys.argv[1])

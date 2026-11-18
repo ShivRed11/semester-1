@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.6, Session 1: Task 3
 
 import math
@@ -39,3 +40,49 @@ class Shape:
 
 # Implement your Circle class here
 # Make sure that it inherits properly from Shape!
+
+
+class Circle(Shape):
+    """
+    A circle, with a radius, position & colour.
+    """
+
+    def __init__(self, radius, position, colour="red"):
+        """
+        Creates a circle with the specified radius, position & colour.
+        """
+        # Key idea: let the superclass (Shape) set up position & colour,
+        # then handle the one field that is specific to circles
+        super().__init__(position, colour)
+        self.set_radius(radius)
+
+    def set_radius(self, radius):
+        """
+        Sets the radius of this circle.
+        """
+        if not isinstance(radius, (int, float)):
+            raise TypeError("radius must be a number")
+
+        if radius <= 0:
+            raise ValueError("radius must be greater than zero")
+
+        self.radius = radius
+
+    def __str__(self):
+        """
+        Returns a string representation of this circle.
+        """
+        # str(self.position) uses Point's own __str__() method
+        return f"{self.colour} circle, radius {self.radius}, at {self.position}"
+
+    def area(self):
+        """
+        Returns the area of this circle.
+        """
+        return math.pi * self.radius ** 2
+
+    def perimeter(self):
+        """
+        Returns the perimeter (circumference) of this circle.
+        """
+        return 2 * math.pi * self.radius

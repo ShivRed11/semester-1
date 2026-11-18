@@ -1,3 +1,4 @@
+# Reference solution (rewritten after original work was lost)
 # Week 1.5, Session 2: Task 3
 
 class Money:
@@ -15,6 +16,16 @@ class Money:
         # - the pence parameter is an integer
         # - pence is not negative and not greater than 99
         # Raise appropriate exceptions if any of these are violated
+        # TypeError  -> wrong TYPE of value;  ValueError -> right type,
+        # but a value outside the allowed range
+        if not isinstance(pounds, int):
+            raise TypeError("pounds must be an integer")
+        if not isinstance(pence, int):
+            raise TypeError("pence must be an integer")
+        if pounds < 0:
+            raise ValueError("pounds cannot be negative")
+        if pence < 0 or pence > 99:
+            raise ValueError("pence must be between 0 and 99")
 
         self.pounds = pounds
         self.pence = pence
@@ -26,6 +37,8 @@ class Money:
         # Add code here to return an appropriate string representation
         # Use the currency symbol for British Pounds Sterling
         # Represent pence with a leading zero if needed (e.g. '05')
+        # :02d -> integer, at least 2 digits, padded with a leading zero
+        return f"£{self.pounds}.{self.pence:02d}"
 
     def __add__(self, other):
         """
@@ -34,3 +47,12 @@ class Money:
         # Add code here to check that parameter 'other' is a Money object,
         # add self to other, then return the sum as a new Money object
         # (see README for hints and tips)
+        if not isinstance(other, Money):
+            raise TypeError("can only add Money to Money")
+
+        total_pence = self.pence + other.pence
+        # every 100 pence is another pound: // gives the extra pounds,
+        # % gives the pence left over (always 0-99)
+        pounds = self.pounds + other.pounds + total_pence // 100
+        pence = total_pence % 100
+        return Money(pounds, pence)
